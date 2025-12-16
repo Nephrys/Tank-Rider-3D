@@ -20,6 +20,8 @@ public class Mouvement_Tank : MonoBehaviour
 
     [Header("Fire")]
     public InputActionReference fireAction;
+    public float fireCooldown = 0.5f;
+    float fireTimer = 0f;
     public GameObject bulletPrefab;
 
     float verticalVelocity = 0f;
@@ -63,6 +65,7 @@ public class Mouvement_Tank : MonoBehaviour
             maxPitchAngle,
             -maxPitchAngle
         );
+        clampTankMovement();
 
         Quaternion targetRotation = Quaternion.Euler(
             pitch,
@@ -77,13 +80,19 @@ public class Mouvement_Tank : MonoBehaviour
         );
 
         // ---------- TIR ----------
-        if (fireAction.action.WasPressedThisFrame())
+        if (fireTimer > 0f)
+        {
+            fireTimer -= Time.deltaTime;
+        }
+
+        if (fireAction.action.WasPressedThisFrame() && fireTimer <= 0f)
         {
             Instantiate(
                 bulletPrefab,
                 transform.position,
                 Quaternion.identity
             );
+            fireTimer = fireCooldown;
         }
     }
 
@@ -94,5 +103,16 @@ public class Mouvement_Tank : MonoBehaviour
             Destroy(collision.collider.gameObject);
             Destroy(gameObject);
         }
+    }
+
+    void clampTankMovement()
+    {
+        float clampedX = Mathf.Clamp(transform.position.x, -10f, 10f);
+        float clampedZ = Mathf.Clamp(transform.position.z, 0f, 100f);
+        transform.position = new Vector3(
+            clampedX,
+            transform.position.y,
+            clampedZ
+        );
     }
 }
