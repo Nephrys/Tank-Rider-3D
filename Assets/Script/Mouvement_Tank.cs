@@ -1,39 +1,95 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 public class Mouvement_Tank : MonoBehaviour
 {
-    public float speed;
+    [Header("Movement")]
+    public float speed = 5f;
     public InputActionReference moveAction;
+
+    [Header("Jump")]
+    public InputActionReference jumpAction;
+    [SerializeField] float jumpForce = 6f;
+    [SerializeField] float gravity = 15f;
+
+    [Header("Pitch")]
+    [SerializeField] float maxPitchAngle = 20f;
+    [SerializeField] float pitchSpeed = 6f;
+
+    [Header("Fire")]
+    public InputActionReference fireAction;
     public GameObject bulletPrefab;
 
-    public InputActionReference fireAction;
-    //public GameObject gameovercanva;
-    
-    void Start()
-    {
-    }
+    float verticalVelocity = 0f;
+    bool isGrounded = true;
 
-    // Update is called once per frame
     void Update()
     {
         Vector2 input = moveAction.action.ReadValue<Vector2>();
-        Vector3 direction = new Vector3(input.x, 0f, 1f);
-        transform.position += direction * speed * Time.deltaTime;
 
+        if (jumpAction.action.WasPressedThisFrame() && isGrounded)
+        {
+            verticalVelocity = jumpForce;
+            isGrounded = false;
+        }
+
+        verticalVelocity -= gravity * Time.deltaTime;
+
+        Vector3 movement = new Vector3(
+            input.x * speed,
+            verticalVelocity,
+            1f * speed
+        );
+
+        transform.position += movement * Time.deltaTime;
+
+
+        if (transform.position.y <= 0f)
+        {
+            transform.position = new Vector3(
+                transform.position.x,
+                0f,
+                transform.position.z
+            );
+
+            verticalVelocity = 0f;
+            isGrounded = true;
+        }
+        float pitch = Mathf.Clamp(
+            verticalVelocity * maxPitchAngle,
+            maxPitchAngle,
+            -maxPitchAngle
+        );
+
+        Quaternion targetRotation = Quaternion.Euler(
+            pitch,
+            transform.eulerAngles.y,
+            transform.eulerAngles.z
+        );
+
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            targetRotation,
+            pitchSpeed * Time.deltaTime
+        );
+
+        // ---------- TIR ----------
         if (fireAction.action.WasPressedThisFrame())
         {
-            Instantiate(bulletPrefab, this.transform.position + this.transform.forward, this.transform.rotation);
-        }
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.collider.tag == "enemy")
-        {
-            Destroy(this.gameObject);
-            Destroy(collision.collider.gameObject);
-            //gameovercanva.SetActive(true);
+            Instantiate(
+                bulletPrefab,
+                transform.position,
+                Quaternion.identity
+            );
         }
     }
 
-    
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("enemy"))
+        {
+            Destroy(collision.collider.gameObject);
+            Destroy(gameObject);
+        }
+    }
 }
