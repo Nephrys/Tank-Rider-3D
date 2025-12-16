@@ -3020,6 +3020,10 @@ PrefabInstance:
       value: Tank_Alternative_Model
       objectReference: {fileID: 0}
     - target: {fileID: 8030328879093165293, guid: 9f486fa76aa316a42b8b28bdbbc05705, type: 3}
+      propertyPath: speedx
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8030328879093165293, guid: 9f486fa76aa316a42b8b28bdbbc05705, type: 3}
       propertyPath: fireAction
       value: 
       objectReference: {fileID: 98977843}
