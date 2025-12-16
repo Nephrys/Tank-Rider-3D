@@ -15,8 +15,6 @@ public class Mouvement_Camera : MonoBehaviour
 
     void LateUpdate()
     {
-        print("Late Update Camera");
-        print(tank);
         if (tank != null)
         {
             //Follow only its position on the z axis
