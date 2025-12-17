@@ -1,8 +1,15 @@
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Security.Authentication.ExtendedProtection;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Mouvement_Tank : MonoBehaviour
 {
+    [Header("Explosion Settings")]
+    public GameObject explosionPrefab;
+
+
     [Header("Movement")]
     public float speed = 5f;
     public InputActionReference moveAction;
@@ -86,10 +93,16 @@ public class Mouvement_Tank : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("enemy"))
+        if (collision.collider.CompareTag("enemy") || collision.collider.CompareTag("water") )
         {
-            Destroy(collision.collider.gameObject);
             Destroy(gameObject);
+            Instantiate(
+                explosionPrefab,
+                transform.position,
+                Quaternion.identity
+            );
         }
+
     }
+
 }
