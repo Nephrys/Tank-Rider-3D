@@ -5,6 +5,7 @@ public class MapGenerator : MonoBehaviour
 {
 
     // a redefinir, calculer size plane/size tank
+    public int size;
     public int col;
     public int row;
     public int[,] Tile_binary;
