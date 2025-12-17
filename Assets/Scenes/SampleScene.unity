@@ -764,7 +764,8 @@ PrefabInstance:
       value: Plane
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1221173758745838121, guid: 93a6f55210f2f144ba26be1c46adc4c3, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1649683489909410712, guid: 93a6f55210f2f144ba26be1c46adc4c3, type: 3}
