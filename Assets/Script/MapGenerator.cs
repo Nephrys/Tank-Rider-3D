@@ -1,59 +1,52 @@
 using UnityEngine;
-using System.Collections;
 
-public class MapGenerator : MonoBehaviour
+public class TileRunnerZ_Simple : MonoBehaviour
 {
+    [Header("Tile Settings")]
+    public GameObject[] tilePrefabs;
 
-    // a redefinir, calculer size plane/size tank
-    public int size;
-    public int col;
-    public int row;
-    public int[,] Tile_binary;
-    public GameObject obstacle; 
-    public int cellSize;
-    public float origin;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [Header("Spawn Settings")]
+    public Transform player;
+    public Transform spawnStartPoint;
+    public float spawnAheadDistance = 200f;
+
+    private float nextSpawnZ;
+
     void Start()
     {
-        Tile_binary = new int[col, row];
-        for (int x = 0; x < col; x++)
-        {
-            for (int y = 0; y < row; y++)
-            {
-                //Tile_binary[x,y] = Random.Range(0,2);
-                Tile_binary[x,y] = 0;
-            }
-        }
         
-        // 2) Spawn a cube for each cell == 1
-        for (int x = 0; x < col; x++)
-        {
-            for (int y = 0; y < row; y++)
-            {
-                if (Tile_binary[x, y] == 0)
-                {
-                    // Compute world position on XZ-plane
-                    Vector3 pos = new Vector3(x * cellSize, 0f, y * cellSize);
 
-                    // Place and parent it
-                    GameObject newObs = Instantiate(obstacle,pos, Quaternion.identity );
-                    newObs.transform.SetParent(transform, worldPositionStays: true);
-                }
-            }
-        }
-        origin += 50;
-       
-
+        nextSpawnZ = spawnStartPoint.position.z;
+        SpawnTile();
     }
 
-    // Update is called once per frame
+
+
     void Update()
     {
-        
+        if (nextSpawnZ - player.position.z < spawnAheadDistance)
+        {
+            SpawnTile();
+        }
     }
 
-    private void OnBecameInvisible()
+    void SpawnTile()
     {
-        Destroy(this.gameObject);
+        int rand = Random.Range(0, tilePrefabs.Length);
+        GameObject prefab = tilePrefabs[rand];
+
+        GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity);
+
+        Renderer renderer = tile.GetComponentInChildren<Renderer>();
+        float tileLengthZ = renderer.bounds.size.z;
+
+        // Positionner la tile pour que SON BAS touche nextSpawnZ
+        Vector3 pos = spawnStartPoint.position;
+        pos.z = nextSpawnZ + tileLengthZ / 2f;
+
+        tile.transform.position = pos;
+
+        nextSpawnZ += tileLengthZ;
     }
+
 }

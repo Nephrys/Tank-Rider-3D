@@ -133,6 +133,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
   m_Asset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_ActionId: 6c2ab1b8-8984-453a-af3d-a3c78ae1679a
+--- !u!4 &108448702 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1422290465556536461, guid: 9f486fa76aa316a42b8b28bdbbc05705, type: 3}
+  m_PrefabInstance: {fileID: 8734878773526956313}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &249488979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,6 +497,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1649683489909410712, guid: 93a6f55210f2f144ba26be1c46adc4c3, type: 3}
   m_PrefabInstance: {fileID: 7662137542206859732}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1206423275 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 504214602021564288, guid: 93a6f55210f2f144ba26be1c46adc4c3, type: 3}
+  m_PrefabInstance: {fileID: 7662137542206859732}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1206423276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,12 +514,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a4abb1fb5a2657428b1147a3f8dac81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapGenerator
-  size: 5
-  col: 0
-  row: 0
-  obstacle: {fileID: 0}
-  cellSize: 0
-  origin: 0
+  tilePrefabs:
+  - {fileID: 1649683489909410712, guid: 93a6f55210f2f144ba26be1c46adc4c3, type: 3}
+  - {fileID: 1649683489909410712, guid: dc2436475cc6bd942ad2f5dc7a736606, type: 3}
+  - {fileID: 1123400350606373540, guid: 40559026ceb870041be40b596cbf7884, type: 3}
+  possibleSizes:
+  - 3
+  - 5
+  - 7
+  player: {fileID: 108448702}
+  spawnStartPoint: {fileID: 1206423275}
+  spawnAheadDistance: 20
 --- !u!1 &1754473915
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,7 +872,7 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 1754473916}
-  - {fileID: 8734878773526956313}
   - {fileID: 4662618043420070312}
   - {fileID: 2892252760065247553}
+  - {fileID: 8734878773526956313}
   - {fileID: 7662137542206859732}

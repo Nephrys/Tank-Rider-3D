@@ -108,11 +108,11 @@ public class Mouvement_Tank : MonoBehaviour
     void clampTankMovement()
     {
         float clampedX = Mathf.Clamp(transform.position.x, -10f, 10f);
-        float clampedZ = Mathf.Clamp(transform.position.z, 0f, 100f);
+        float clampedZ = Mathf.Clamp(transform.position.z, 0f, 1000f);
         transform.position = new Vector3(
             clampedX,
             transform.position.y,
-            clampedZ
+            transform.position.z
         );
     }
 }
