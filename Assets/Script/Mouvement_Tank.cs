@@ -120,11 +120,11 @@ public class Mouvement_Tank : MonoBehaviour
         if (collision.collider.CompareTag("enemy") || collision.collider.CompareTag("trou"))
         {
             // Start death sequence (explosion + scene load)
-            StartCoroutine(HandleDeath(collision.collider.gameObject));
+            StartCoroutine(HandleDeath());
         }
     }
 
-    private IEnumerator HandleDeath(GameObject enemy)
+    private IEnumerator HandleDeath()
     {
         // Mark as dead to prevent further input/collisions
         isDead = true;
@@ -132,7 +132,7 @@ public class Mouvement_Tank : MonoBehaviour
         Vector3 explosionPosition = transform.position;
         
         // Destroy enemy
-        Destroy(enemy);
+        //Destroy(enemy);
 
         // Hide the tank (disable renderer) but keep GameObject alive for coroutine
         Renderer[] renderers = GetComponentsInChildren<Renderer>();
