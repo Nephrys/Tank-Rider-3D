@@ -101,7 +101,6 @@ GameObject:
   - component: {fileID: 3046940388235619064}
   - component: {fileID: 789212201511793181}
   - component: {fileID: 6591465156092350204}
-  - component: {fileID: 2699562929295004310}
   m_Layer: 0
   m_Name: Box014
   m_TagString: Untagged
@@ -181,27 +180,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2699562929295004310
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1110556664135930726}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 4.472054, y: 6.873829, z: 4.6376743}
-  m_Center: {x: -0.057349205, y: 0.56390405, z: 1.7900262}
 --- !u!1 &1480175715576178409
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,6 +190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2288236890540981331}
   - component: {fileID: 4359300815380656206}
+  - component: {fileID: 3713050809328471641}
   m_Layer: 0
   m_Name: Jungle Temple 02
   m_TagString: enemy
@@ -268,6 +247,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!65 &3713050809328471641
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480175715576178409}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.7275085, y: 4.867074, z: 7.132679}
+  m_Center: {x: 9.111357, y: 1.933537, z: 0.23209941}
 --- !u!1 &1615001076879314925
 GameObject:
   m_ObjectHideFlags: 0

@@ -622,9 +622,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapGenerator
   tilePrefabs:
-  - {fileID: 1649683489909410712, guid: 93a6f55210f2f144ba26be1c46adc4c3, type: 3}
+  - {fileID: 5072545569787778154, guid: 20b7bb55a3431a64abf8cb14d3a9365b, type: 3}
   - {fileID: 8717785015940758013, guid: 5eeca813fb1a8f0438d24d10797dc26b, type: 3}
   - {fileID: 8089991499101161012, guid: 15a16bf1820b3f0478e45b6f3ab4e889, type: 3}
+  - {fileID: 3875744975999617088, guid: ee798033fed44114aa32890413c67807, type: 3}
+  - {fileID: 2000552575193753468, guid: beaec0179add7ed418d09f4a4a283dbb, type: 3}
+  - {fileID: 7131193873152042004, guid: b38c9e071b756b345916ec00b763956e, type: 3}
+  - {fileID: 4103386233239834030, guid: d4ac4f2a43deb6642863ae468375b427, type: 3}
+  - {fileID: 5252537171640923255, guid: 2f10a38c2323e7549a690700b9d704ed, type: 3}
+  - {fileID: 4931359774399056068, guid: e3b34b8ea35b23c4a8ffc674c6e01453, type: 3}
+  - {fileID: 6204173471071933825, guid: 2deb5819cb7595345b996813ae6e1741, type: 3}
+  - {fileID: 8360901645484351022, guid: 7736840dd7f81cd47808c7b3b78d81ad, type: 3}
+  - {fileID: 2409830180711387128, guid: f025ea975dd3e984a9ee01b9ac5237e0, type: 3}
+  - {fileID: 803475739786756875, guid: 07393e47e6ba4b144a3d2784983742cd, type: 3}
+  - {fileID: 8707670652514708608, guid: 16f8941dfe9e42347b335d69be0272cb, type: 3}
   player: {fileID: 108448702}
   spawnStartPoint: {fileID: 274828873}
   spawnAheadDistance: 200
@@ -719,6 +730,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 108448702}
+    - target: {fileID: 6615885595133366128, guid: 93a6f55210f2f144ba26be1c46adc4c3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6a848e4368163344ca6711f2ad6b5188, type: 2}
     m_RemovedComponents:
     - {fileID: 3097039728855930948, guid: 93a6f55210f2f144ba26be1c46adc4c3, type: 3}
     m_RemovedGameObjects:
