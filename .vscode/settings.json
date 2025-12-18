@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Project_scroller.slnx"
+    "dotnet.defaultSolution": "Tank-Rider-3D.slnx"
 }
