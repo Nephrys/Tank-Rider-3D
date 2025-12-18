@@ -11,8 +11,31 @@ public class Shop_Boutton : MonoBehaviour
     public int B;
 
     public void buy()
-    {
-        print(price + R + G + B);
+    {   if(price<=PlayerPrefs.GetInt("coins")){
+            if (type == 0 && PlayerPrefs.GetInt("tank")!=tank)
+            {
+            PlayerPrefs.SetInt("tank",tank);
+            PlayerPrefs.SetInt("coins",PlayerPrefs.GetInt("coins")-price);
+            }
+            else
+            {
+                if (type == 0)
+                 if (PlayerPrefs.GetInt("R") != R || PlayerPrefs.GetInt("G") != G ||PlayerPrefs.GetInt("R") != B)
+                    {
+
+                        PlayerPrefs.SetInt("R",R);
+                        PlayerPrefs.SetInt("G",G);
+                        PlayerPrefs.SetInt("B",B);
+                        PlayerPrefs.SetInt("coins",PlayerPrefs.GetInt("coins")-price);
+                
+                    }
+                
+            }
+
+            print(PlayerPrefs.GetInt("R"));
+            print(PlayerPrefs.GetInt("G"));
+            print(PlayerPrefs.GetInt("B"));
+        }
     }
     void Start()
     {
