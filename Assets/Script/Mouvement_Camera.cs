@@ -3,7 +3,9 @@ using UnityEngine;
 public class Mouvement_Camera : MonoBehaviour
 {
     GameObject tank;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    float lastKnownZ;
+    bool tankDestroyed = false;
+
     void Start()
     {
         tank = GameObject.FindWithTag("tank");
@@ -11,16 +13,24 @@ public class Mouvement_Camera : MonoBehaviour
         {
             Debug.LogError("Tank object not found!");
         }
+        else
+        {
+            lastKnownZ = tank.transform.position.z;
+        }
     }
 
     void LateUpdate()
     {
         if (tank != null)
         {
-            //Follow only its position on the z axis
+            lastKnownZ = tank.transform.position.z;
             Vector3 newPosition = transform.position;
-            newPosition.z = tank.transform.position.z + 18;
+            newPosition.z = lastKnownZ + 18;
             transform.position = newPosition;
+        }
+        else if (!tankDestroyed)
+        {
+            tankDestroyed = true;
         }
     }
 }

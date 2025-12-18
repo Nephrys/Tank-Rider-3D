@@ -11,20 +11,46 @@ public class TileRunnerZ_Simple : MonoBehaviour
     public float spawnAheadDistance = 200f;
 
     private float nextSpawnZ;
+    private float lastPlayerZ;
+    private bool playerDestroyed = false;
 
     void Start()
     {
-        
+        if (player != null)
+        {
+            lastPlayerZ = player.position.z;
+        }
+        else
+        {
+            lastPlayerZ = spawnStartPoint.position.z;
+            Debug.LogWarning("TileRunnerZ_Simple: Player reference is null at start");
+        }
 
         nextSpawnZ = spawnStartPoint.position.z;
         SpawnTile();
     }
 
-
-
     void Update()
     {
-        if (nextSpawnZ - player.position.z < spawnAheadDistance)
+        float currentPlayerZ;
+
+        if (player != null)
+        {
+            // Player exists, use its position
+            currentPlayerZ = player.position.z;
+            lastPlayerZ = currentPlayerZ;
+        }
+        else
+        {
+            if (!playerDestroyed)
+            {
+                playerDestroyed = true;
+            }
+            // Player destroyed, use last known position
+            currentPlayerZ = lastPlayerZ;
+        }
+
+        if (nextSpawnZ - currentPlayerZ < spawnAheadDistance)
         {
             SpawnTile();
         }
@@ -48,5 +74,4 @@ public class TileRunnerZ_Simple : MonoBehaviour
 
         nextSpawnZ += tileLengthZ;
     }
-
 }

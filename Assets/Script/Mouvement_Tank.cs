@@ -1,5 +1,7 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Mouvement_Tank : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class Mouvement_Tank : MonoBehaviour
     public float speedz = 10f;
     public float acceleration = 0.6f;
     public InputActionReference moveAction;
+    public GameObject explosionPrefab;
 
     [Header("Jump")]
     public InputActionReference jumpAction;
@@ -24,11 +27,18 @@ public class Mouvement_Tank : MonoBehaviour
     float fireTimer = 0f;
     public GameObject bulletPrefab;
 
+    [Header("Dev")]
+    public bool Death = true;
+
     float verticalVelocity = 0f;
     bool isGrounded = true;
+    bool isDead = false;
 
     void Update()
     {
+        // Don't process input if dead
+        if (isDead) return;
+
         Vector2 input = moveAction.action.ReadValue<Vector2>();
 
         if (jumpAction.action.WasPressedThisFrame() && isGrounded)
@@ -106,11 +116,61 @@ public class Mouvement_Tank : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("enemy"))
+        if (!Death || isDead) return;
+        if (collision.collider.CompareTag("enemy") || collision.collider.CompareTag("trou"))
         {
-            Destroy(collision.collider.gameObject);
-            Destroy(gameObject);
+            // Start death sequence (explosion + scene load)
+            StartCoroutine(HandleDeath(collision.collider.gameObject));
         }
+    }
+
+    private IEnumerator HandleDeath(GameObject enemy)
+    {
+        // Mark as dead to prevent further input/collisions
+        isDead = true;
+
+        Vector3 explosionPosition = transform.position;
+        
+        // Destroy enemy
+        Destroy(enemy);
+
+        // Hide the tank (disable renderer) but keep GameObject alive for coroutine
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        foreach (Renderer r in renderers)
+        {
+            r.enabled = false;
+        }
+
+        // Disable collider so tank doesn't interact with anything else
+        Collider col = GetComponent<Collider>();
+        if (col != null)
+        {
+            col.enabled = false;
+        }
+
+        // Spawn explosion
+        float explosionDuration = 1f; // Default fallback
+        if (explosionPrefab != null)
+        {
+            GameObject explosion = Instantiate(explosionPrefab, explosionPosition, Quaternion.identity);
+            ParticleSystem ps = explosion.GetComponent<ParticleSystem>();
+            if (ps != null)
+            {
+                ps.Play();
+                explosionDuration = ps.main.duration + ps.main.startLifetime.constantMax;
+                Destroy(explosion, explosionDuration);
+            }
+            else
+            {
+                Debug.LogWarning("Explosion prefab has no ParticleSystem component!");
+            }
+        }
+        else
+        {
+            Debug.LogError("Explosion prefab is not assigned!");
+        }
+        yield return new WaitForSeconds(explosionDuration);
+        SceneManager.LoadScene("GameOverScene");
     }
 
     void clampTankMovement()
