@@ -27,6 +27,16 @@ public class Mouvement_Tank : MonoBehaviour
     float fireTimer = 0f;
     public GameObject bulletPrefab;
 
+    [Header("Dash")]
+    public InputActionReference dashAction;
+    public float dashCooldown = 2f;
+    public float dashForce = 20f;
+    public float dashDuration = 0.2f;
+    float dashTimer = 0f;
+    bool isDashing = false;
+    float dashTimeRemaining = 0f;
+    float dashDirection = 0f;
+
     [Header("Dev")]
     public bool Death = true;
 
@@ -47,6 +57,29 @@ public class Mouvement_Tank : MonoBehaviour
             isGrounded = false;
         }
 
+        // ---------- DASH ----------
+        if (dashTimer > 0f)
+        {
+            dashTimer -= Time.deltaTime;
+        }
+
+        if (dashAction.action.WasPressedThisFrame() && dashTimer <= 0f && !isDashing && input.x != 0f)
+        {
+            isDashing = true;
+            dashTimeRemaining = dashDuration;
+            dashTimer = dashCooldown;
+            dashDirection = Mathf.Sign(input.x);
+        }
+
+        if (isDashing)
+        {
+            dashTimeRemaining -= Time.deltaTime;
+            if (dashTimeRemaining <= 0f)
+            {
+                isDashing = false;
+            }
+        }
+
         verticalVelocity -= gravity * Time.deltaTime;
         speedz += acceleration * Time.deltaTime;
 
@@ -55,6 +88,12 @@ public class Mouvement_Tank : MonoBehaviour
             verticalVelocity,
             1f * speedz
         );
+
+        // Apply dash boost on X axis (sides)
+        if (isDashing)
+        {
+            movement.x += dashDirection * dashForce;
+        }
 
         transform.position += movement * Time.deltaTime;
 
