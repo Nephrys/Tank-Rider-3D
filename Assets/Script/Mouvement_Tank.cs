@@ -87,11 +87,19 @@ public class Mouvement_Tank : MonoBehaviour
 
         if (fireAction.action.WasPressedThisFrame() && fireTimer <= 0f)
         {
-            Instantiate(
+            GameObject bullet = Instantiate(
                 bulletPrefab,
                 transform.position,
                 Quaternion.identity
             );
+
+            // Pass the tank's current Z speed to the bullet
+            Bullet_Controller bulletController = bullet.GetComponent<Bullet_Controller>();
+            if (bulletController != null)
+            {
+                bulletController.setInheritedSpeed(speedz);
+            }
+
             fireTimer = fireCooldown;
         }
     }

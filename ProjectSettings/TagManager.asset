@@ -6,6 +6,7 @@ TagManager:
   tags:
   - tank
   - enemy
+  - trou
   layers:
   - Default
   - TransparentFX

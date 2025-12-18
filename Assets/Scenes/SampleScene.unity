@@ -623,8 +623,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MapGenerator
   tilePrefabs:
   - {fileID: 1649683489909410712, guid: 93a6f55210f2f144ba26be1c46adc4c3, type: 3}
-  - {fileID: 4362846415236068104, guid: dc2436475cc6bd942ad2f5dc7a736606, type: 3}
-  - {fileID: 1123400350606373540, guid: 40559026ceb870041be40b596cbf7884, type: 3}
+  - {fileID: 8717785015940758013, guid: 5eeca813fb1a8f0438d24d10797dc26b, type: 3}
+  - {fileID: 8089991499101161012, guid: 15a16bf1820b3f0478e45b6f3ab4e889, type: 3}
   player: {fileID: 108448702}
   spawnStartPoint: {fileID: 274828873}
   spawnAheadDistance: 200
