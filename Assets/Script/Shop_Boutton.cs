@@ -19,7 +19,7 @@ public class Shop_Boutton : MonoBehaviour
             }
             else
             {
-                if (type == 0)
+                if (type == 1)
                  if (PlayerPrefs.GetInt("R") != R || PlayerPrefs.GetInt("G") != G ||PlayerPrefs.GetInt("R") != B)
                     {
 
@@ -32,9 +32,10 @@ public class Shop_Boutton : MonoBehaviour
                 
             }
 
-            print(PlayerPrefs.GetInt("R"));
-            print(PlayerPrefs.GetInt("G"));
-            print(PlayerPrefs.GetInt("B"));
+            print("R" + PlayerPrefs.GetInt("R"));
+            print("G" + PlayerPrefs.GetInt("G"));
+            print("B" + PlayerPrefs.GetInt("B"));
+            print(PlayerPrefs.GetInt("tank"));
         }
     }
     void Start()

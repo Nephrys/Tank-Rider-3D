@@ -81,6 +81,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c512d79e400fed48a63cc2c8c0fe0cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
-  speed: 10
+  speedx: 10
+  speedz: 10
+  acceleration: 0.6
   moveAction: {fileID: 0}
+  explosionPrefab: {fileID: 0}
+  jumpAction: {fileID: 0}
+  jumpForce: 6
+  gravity: 15
+  maxPitchAngle: 20
+  pitchSpeed: 6
   fireAction: {fileID: 0}
+  fireCooldown: 0.5
+  bulletPrefab: {fileID: 0}
+  dashAction: {fileID: 0}
+  dashCooldown: 2
+  dashForce: 20
+  dashDuration: 0.2
+  Death: 1
+  id: 0
+  tank: {fileID: 0}
+  targetRenderers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

@@ -1890,7 +1890,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMoneyUI
   moneyText: {fileID: 561164138}
-  moneyKey: Coins
+  moneyKey: coins
 --- !u!114 &561164138
 MonoBehaviour:
   m_ObjectHideFlags: 0

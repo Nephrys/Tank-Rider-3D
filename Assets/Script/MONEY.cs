@@ -1,18 +1,18 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerMoneyUI : MonoBehaviour
 {
     public TextMeshProUGUI moneyText;
-    public string moneyKey = "Coins";
+    public string moneyKey = "coins";
 
     void Start()
     {
         UpdateMoneyUI();
+        InvokeRepeating(nameof(UpdateMoneyUI), 0f, 1f);
     }
 
-    public void UpdateMoneyUI()
+    void UpdateMoneyUI()
     {
         int money = PlayerPrefs.GetInt(moneyKey, 0);
         moneyText.text = money.ToString();

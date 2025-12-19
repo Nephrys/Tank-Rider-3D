@@ -20,7 +20,8 @@ public class Mouvement_Camera : MonoBehaviour
     }
 
     void LateUpdate()
-    {
+    {   
+        tank = GameObject.FindWithTag("tank");
         if (tank != null)
         {
             lastKnownZ = tank.transform.position.z;

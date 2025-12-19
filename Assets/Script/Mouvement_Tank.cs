@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -43,6 +44,56 @@ public class Mouvement_Tank : MonoBehaviour
     float verticalVelocity = 0f;
     bool isGrounded = true;
     bool isDead = false;
+
+    [Header("Spawn")]
+    public int id;
+    public GameObject tank;
+    private const float tolerance = 0.01f;
+    public Color targetColor = new Color(1f, 0f, 10f / 255f);
+
+    
+    void Start()
+    {
+        if (id != PlayerPrefs.GetInt("tank"))
+        {
+            tank.SetActive(false);
+        }
+        else
+        {   
+
+            Color color = new Color(PlayerPrefs.GetInt("R") / 255f, PlayerPrefs.GetInt("G") / 255f, PlayerPrefs.GetInt("B") / 255f);
+            print(color);
+            MeshRenderer[] renderers = tank.GetComponentsInChildren<MeshRenderer>(true);
+
+            foreach (MeshRenderer mr in renderers)
+            {
+                Material[] mats = mr.materials;
+
+                for (int i = 0; i < mats.Length; i++)
+                {
+                    if (!mats[i].HasProperty("_Color"))
+                        continue;
+
+                    Color current = mats[i].color;
+
+                    if (IsSameColor(current, targetColor))
+                    {
+                        mats[i].color = color;
+                    }
+                }
+
+                // IMPORTANT : réassigner le tableau
+                mr.materials = mats;
+            }
+        }
+            StartCoroutine(AddCoinsOverTime());
+    }
+    bool IsSameColor(Color a, Color b)
+    {
+        return Mathf.Abs(a.r - b.r) < tolerance &&
+               Mathf.Abs(a.g - b.g) < tolerance &&
+               Mathf.Abs(a.b - b.b) < tolerance;
+    }
 
     void Update()
     {
@@ -221,5 +272,22 @@ public class Mouvement_Tank : MonoBehaviour
             transform.position.y,
             transform.position.z
         );
+    }
+    IEnumerator AddCoinsOverTime()
+    {
+        while (true)
+        {   
+            print(PlayerPrefs.GetInt("coins", 0));
+            yield return new WaitForSeconds(3f);
+            AddCoin(1);
+        }
+    }
+
+    void AddCoin(int amount)
+    {
+        int coins = PlayerPrefs.GetInt("coins", 0);
+        coins += amount;
+        PlayerPrefs.SetInt("coins", coins);
+        PlayerPrefs.Save();
     }
 }

@@ -6,49 +6,24 @@ public class TileRunnerZ_Simple : MonoBehaviour
     public GameObject[] tilePrefabs;
 
     [Header("Spawn Settings")]
-    public Transform player;
     public Transform spawnStartPoint;
     public float spawnAheadDistance = 200f;
+    public string tankTag = "tank";
 
     private float nextSpawnZ;
-    private float lastPlayerZ;
-    private bool playerDestroyed = false;
+    private float lastKnownZ;
 
     void Start()
     {
-        if (player != null)
-        {
-            lastPlayerZ = player.position.z;
-        }
-        else
-        {
-            lastPlayerZ = spawnStartPoint.position.z;
-            Debug.LogWarning("TileRunnerZ_Simple: Player reference is null at start");
-        }
-
+        lastKnownZ = spawnStartPoint.position.z;
         nextSpawnZ = spawnStartPoint.position.z;
+
         SpawnTile();
     }
 
     void Update()
     {
-        float currentPlayerZ;
-
-        if (player != null)
-        {
-            // Player exists, use its position
-            currentPlayerZ = player.position.z;
-            lastPlayerZ = currentPlayerZ;
-        }
-        else
-        {
-            if (!playerDestroyed)
-            {
-                playerDestroyed = true;
-            }
-            // Player destroyed, use last known position
-            currentPlayerZ = lastPlayerZ;
-        }
+        float currentPlayerZ = GetMaxTankZ();
 
         if (nextSpawnZ - currentPlayerZ < spawnAheadDistance)
         {
@@ -56,20 +31,42 @@ public class TileRunnerZ_Simple : MonoBehaviour
         }
     }
 
+    float GetMaxTankZ()
+    {
+        GameObject[] tanks = GameObject.FindGameObjectsWithTag(tankTag);
+
+        float maxZ = lastKnownZ;
+        bool tankFound = false;
+
+        foreach (GameObject tank in tanks)
+        {
+            if (tank != null && tank.activeInHierarchy)
+            {
+                maxZ = Mathf.Max(maxZ, tank.transform.position.z);
+                tankFound = true;
+            }
+        }
+
+        if (tankFound)
+        {
+            lastKnownZ = maxZ;
+        }
+
+        return lastKnownZ;
+    }
+
     void SpawnTile()
     {
         int rand = Random.Range(0, tilePrefabs.Length);
         GameObject prefab = tilePrefabs[rand];
 
-        GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity);
+        GameObject tile = Instantiate(prefab);
 
         Renderer renderer = tile.GetComponentInChildren<Renderer>();
         float tileLengthZ = renderer.bounds.size.z;
 
-        // Positionner la tile pour que SON BAS touche nextSpawnZ
         Vector3 pos = spawnStartPoint.position;
         pos.z = nextSpawnZ + tileLengthZ / 2f;
-
         tile.transform.position = pos;
 
         nextSpawnZ += tileLengthZ;
