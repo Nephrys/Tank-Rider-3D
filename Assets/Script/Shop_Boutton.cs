@@ -1,5 +1,6 @@
-    using UnityEngine;
-
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 public class Shop_Boutton : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -9,6 +10,9 @@ public class Shop_Boutton : MonoBehaviour
     public int R;
     public int G;
     public int B;
+
+    public TextMeshProUGUI monTexte;       // Assigne ton objet texte dans l'inspecteur
+    public RawImage monImage;
 
     public void buy()
     {   if(price<=PlayerPrefs.GetInt("coins")){
@@ -31,11 +35,10 @@ public class Shop_Boutton : MonoBehaviour
                     }
                 
             }
+            print("R"+PlayerPrefs.GetInt("R"));
+            print("G"+PlayerPrefs.GetInt("G"));
+            print("B"+PlayerPrefs.GetInt("B"));
 
-            print("R" + PlayerPrefs.GetInt("R"));
-            print("G" + PlayerPrefs.GetInt("G"));
-            print("B" + PlayerPrefs.GetInt("B"));
-            print(PlayerPrefs.GetInt("tank"));
         }
     }
     void Start()
@@ -46,6 +49,34 @@ public class Shop_Boutton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (type == 0)
+        {
+           if(PlayerPrefs.GetInt("tank")==tank)
+           {
+                monTexte.gameObject.SetActive(false);
+                monImage.gameObject.SetActive(true);
+           }
+           else
+            {
+               monTexte.gameObject.SetActive(true);
+               monImage.gameObject.SetActive(false); 
+                 
+            }
+        }
+        else
+        {
+            bool temp=PlayerPrefs.GetInt("G") == G && PlayerPrefs.GetInt("B") == B;
+            if(PlayerPrefs.GetInt("R") == R && temp)
+           {
+            monTexte.gameObject.SetActive(false);
+            monImage.gameObject.SetActive(true);
+           
+           }
+           else
+            {
+            monTexte.gameObject.SetActive(true);
+            monImage.gameObject.SetActive(false); 
+            }
+        }
     }
 }
