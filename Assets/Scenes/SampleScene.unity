@@ -119,6 +119,20 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &84934574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: UI/Submit
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_ActionId: 7607c7b6-cd76-4816-beef-bd0341cfe950
 --- !u!114 &98977843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +152,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1422290465556536461, guid: 9f486fa76aa316a42b8b28bdbbc05705, type: 3}
   m_PrefabInstance: {fileID: 8734878773526956313}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &164028863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: UI/Submit
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_ActionId: 7607c7b6-cd76-4816-beef-bd0341cfe950
 --- !u!114 &249488979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,6 +446,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &280505500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: UI/Submit
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_ActionId: 7607c7b6-cd76-4816-beef-bd0341cfe950
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,6 +947,20 @@ MonoBehaviour:
   spawnStartPoint: {fileID: 274828873}
   spawnAheadDistance: 200
   tankTag: tank
+--- !u!114 &1254637558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: UI/Submit
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_ActionId: 7607c7b6-cd76-4816-beef-bd0341cfe950
 --- !u!1 &1440156973
 GameObject:
   m_ObjectHideFlags: 0
@@ -1101,6 +1157,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
   m_Asset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_ActionId: 641cd816-40e6-41b4-8c3d-04687c349290
+--- !u!114 &2049831410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: UI/Submit
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_ActionId: 7607c7b6-cd76-4816-beef-bd0341cfe950
 --- !u!1001 &522175343259230068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1169,6 +1239,10 @@ PrefabInstance:
       propertyPath: moveAction
       value: 
       objectReference: {fileID: 963596325}
+    - target: {fileID: 8383417821139531506, guid: 9e74ecb19f11a9f4db90981598a367f3, type: 3}
+      propertyPath: secondaryFireAction
+      value: 
+      objectReference: {fileID: 84934574}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1198,6 +1272,10 @@ PrefabInstance:
       propertyPath: moveAction
       value: 
       objectReference: {fileID: 963596325}
+    - target: {fileID: 1261649586458961323, guid: 678c44e6dc6598e49bc645ec424352d8, type: 3}
+      propertyPath: secondaryFireAction
+      value: 
+      objectReference: {fileID: 164028863}
     - target: {fileID: 1262737974051558636, guid: 678c44e6dc6598e49bc645ec424352d8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.040958375
@@ -1271,6 +1349,10 @@ PrefabInstance:
       propertyPath: moveAction
       value: 
       objectReference: {fileID: 963596325}
+    - target: {fileID: 1531379810209589798, guid: f3b3639c4d08c1b498901f0ff26c8526, type: 3}
+      propertyPath: secondaryFireAction
+      value: 
+      objectReference: {fileID: 2049831410}
     - target: {fileID: 3948437546503963502, guid: f3b3639c4d08c1b498901f0ff26c8526, type: 3}
       propertyPath: m_Name
       value: Tank_Spike_Model
@@ -1344,6 +1426,10 @@ PrefabInstance:
       propertyPath: moveAction
       value: 
       objectReference: {fileID: 963596325}
+    - target: {fileID: 2294816446540776801, guid: e63ce502603bfc2418445c5f1b6f6644, type: 3}
+      propertyPath: secondaryFireAction
+      value: 
+      objectReference: {fileID: 1254637558}
     - target: {fileID: 2576405565610051909, guid: e63ce502603bfc2418445c5f1b6f6644, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.2401694
@@ -1559,6 +1645,10 @@ PrefabInstance:
       propertyPath: explosionPrefab
       value: 
       objectReference: {fileID: 151086, guid: 6bc6d0dd8b8428e4ca316513f2cf13c6, type: 3}
+    - target: {fileID: 8030328879093165293, guid: 9f486fa76aa316a42b8b28bdbbc05705, type: 3}
+      propertyPath: secondaryFireAction
+      value: 
+      objectReference: {fileID: 280505500}
     - target: {fileID: 8030328879093165293, guid: 9f486fa76aa316a42b8b28bdbbc05705, type: 3}
       propertyPath: targetRenderers.Array.size
       value: 4

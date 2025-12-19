@@ -24,6 +24,7 @@ public class Mouvement_Tank : MonoBehaviour
 
     [Header("Fire")]
     public InputActionReference fireAction;
+    public InputActionReference secondaryFireAction;
     public float fireCooldown = 0.5f;
     float fireTimer = 0f;
     public GameObject bulletPrefab;
@@ -102,6 +103,8 @@ public class Mouvement_Tank : MonoBehaviour
 
         Vector2 input = moveAction.action.ReadValue<Vector2>();
 
+        float horizontalInput = input.x - input.y;
+
         if (jumpAction.action.WasPressedThisFrame() && isGrounded)
         {
             verticalVelocity = jumpForce;
@@ -114,12 +117,12 @@ public class Mouvement_Tank : MonoBehaviour
             dashTimer -= Time.deltaTime;
         }
 
-        if (dashAction.action.WasPressedThisFrame() && dashTimer <= 0f && !isDashing && input.x != 0f)
+        if (dashAction.action.WasPressedThisFrame() && dashTimer <= 0f && !isDashing && horizontalInput != 0f)
         {
             isDashing = true;
             dashTimeRemaining = dashDuration;
             dashTimer = dashCooldown;
-            dashDirection = Mathf.Sign(input.x);
+            dashDirection = Mathf.Sign(horizontalInput);
         }
 
         if (isDashing)
@@ -135,7 +138,7 @@ public class Mouvement_Tank : MonoBehaviour
         speedz += acceleration * Time.deltaTime;
 
         Vector3 movement = new Vector3(
-            input.x * speedx,
+            horizontalInput * speedx,
             verticalVelocity,
             1f * speedz
         );
@@ -185,7 +188,8 @@ public class Mouvement_Tank : MonoBehaviour
             fireTimer -= Time.deltaTime;
         }
 
-        if (fireAction.action.WasPressedThisFrame() && fireTimer <= 0f)
+        // Check both primary and secondary fire actions
+        if ((fireAction.action.WasPressedThisFrame() || secondaryFireAction.action.WasPressedThisFrame()) && fireTimer <= 0f)
         {
             GameObject bullet = Instantiate(
                 bulletPrefab,
