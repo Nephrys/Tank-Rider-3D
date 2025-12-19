@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2722920912438758676}
   - component: {fileID: 2355203742102065180}
   - component: {fileID: 6816528367850198789}
-  - component: {fileID: -6147361068591144716}
   - component: {fileID: 5804928938561196554}
   - component: {fileID: 3860105678223023805}
   m_Layer: 0
@@ -19,7 +18,7 @@ GameObject:
   m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2722920912438758676
 Transform:
@@ -93,28 +92,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &-6147361068591144716
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3365577525225607571}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -3653528695432959967, guid: 593d4f7dc5f444843b2b02f101b56b8c, type: 3}
 --- !u!54 &5804928938561196554
 Rigidbody:
   m_ObjectHideFlags: 0

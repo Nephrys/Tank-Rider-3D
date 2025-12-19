@@ -22,6 +22,7 @@ public class Bullet_Controller : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        print("Collision detected with " + collision.collider.name);
         if (collision.collider.CompareTag("enemy"))
         {
             Destroy(collision.collider.gameObject);
