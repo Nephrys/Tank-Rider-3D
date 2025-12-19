@@ -12,9 +12,22 @@ public class OpenShop : MonoBehaviour
     {
         shopPanel.SetActive(false);
     }
-    void Start()
-    {
+    void Awake() {
         
+    
+        if (!PlayerPrefs.HasKey("coins"))
+        {
+            PlayerPrefs.SetInt("coins", 0); 
+        }
+
+        if (!PlayerPrefs.HasKey("R"))
+        {
+            PlayerPrefs.SetInt("R", 255); 
+        }
+
+
+        // Sauvegarde immédiatement les valeurs
+        PlayerPrefs.Save();
     }
 
     // Update is called once per frame
