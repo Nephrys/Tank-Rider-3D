@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Tanks/Tutorial_Demo/Demo_Scenes/Demo_Game_Moon.unity
-    guid: 7d48af2f9c7c14840abfc5e21827efaa
-  - enabled: 1
     path: Assets/Scenes/MenuScene.unity
     guid: f88e29435365d7d418f8540680fad4ee
   - enabled: 1
